@@ -330,3 +330,63 @@ min-width:90px;
 }
 
 }
+@media screen and (max-width:768px){
+
+.hero{
+padding:15px;
+min-height:90vh;
+}
+
+.glass{
+padding:20px;
+width:95%;
+}
+
+.glass h1{
+font-size:2rem;
+}
+
+.glass h3{
+font-size:1rem;
+}
+
+#typewriter{
+font-size:15px;
+line-height:1.6;
+}
+
+.countdown{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.countdown div{
+min-width:auto;
+padding:15px;
+}
+
+.countdown span{
+font-size:1.5rem;
+}
+
+.slider{
+width:90%;
+height:350px;
+}
+
+.slide{
+border-radius:20px;
+}
+
+.letter p{
+font-size:15px;
+padding:0 10px;
+}
+
+.popup-content{
+width:95%;
+padding:20px;
+}
+
+}
