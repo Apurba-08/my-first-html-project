@@ -14,67 +14,114 @@
 
 <body>
 
-<!-- INTRO SCREEN -->
+<!-- FLOATING EFFECTS -->
 
-<div id="introScreen">
+<div id="heart-container"></div>
+<div id="butterfly-container"></div>
+<div id="flower-container"></div>
 
-<div class="intro-card">
+<!-- COUNTDOWN SCREEN -->
+
+<section id="countdown-screen">
+
+<div class="countdown-card">
 
 <h1>🦋 Happy Birthday Titli 🦋</h1>
 
-<p>
-A Little Surprise Made With Love ❤️
+<p class="subtitle">
+Something beautiful is waiting...
 </p>
+
+<div class="countdown">
+
+<div class="time-box">
+<span id="days">00</span>
+<p>Days</p>
+</div>
+
+<div class="time-box">
+<span id="hours">00</span>
+<p>Hours</p>
+</div>
+
+<div class="time-box">
+<span id="minutes">00</span>
+<p>Minutes</p>
+</div>
+
+<div class="time-box">
+<span id="seconds">00</span>
+<p>Seconds</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- COUNTDOWN END SCREEN -->
+
+<section id="birthday-screen">
+
+<div class="birthday-card">
+
+<h1>🎂 Happy Birthday Titli 🎂</h1>
+
+<h2>
+
+A Special Surprise Awaits You ❤️
+
+</h2>
+
+<p>
+
+Created by the person who loved you
+but could not have you...
+
+</p>
+
+<div id="mini-countdown">
+
+<span id="finalCount">5</span>
+
+</div>
 
 <button id="enterBtn">
 
-✨ Enter The Memory
+✨ Enter The Memory ✨
 
 </button>
 
 </div>
 
-</div>
+</section>
 
 <!-- MAIN WEBSITE -->
 
-<div id="mainSite">
-
-<!-- MUSIC -->
+<section id="mainWebsite">
 
 <audio id="bgMusic" loop>
 
-<source src="https://raw.githubusercontent.com/Apurba-08/my-first-html-project/refs/heads/main/BIrthday/Aakhri%20Ishq%20-%20SouthMelody.mp3" type="audio/mp3">
+<source src="music.mp3" type="audio/mp3">
 
 </audio>
-
-<!-- HEARTS -->
-
-<div id="heartContainer"></div>
-
-<!-- BUTTERFLIES -->
-
-<div id="butterflyContainer"></div>
-
-<!-- PETALS -->
-
-<div id="petalContainer"></div>
 
 <!-- HERO -->
 
 <section class="hero">
 
-<div class="glass">
+<div class="glass-card">
 
 <h1>
 
-Happy Birthday Titli 🦋
+Happy Birthday Titli ❤️
 
 </h1>
 
 <h3>
 
-From Subho ❤️
+From Subho
 
 </h3>
 
@@ -84,55 +131,7 @@ From Subho ❤️
 
 </section>
 
-<!-- COUNTDOWN -->
-
-<section class="countdown-section">
-
-<h2>
-
-🎂 Countdown To Birthday
-
-</h2>
-
-<div class="countdown">
-
-<div>
-
-<span id="days">00</span>
-
-<p>Days</p>
-
-</div>
-
-<div>
-
-<span id="hours">00</span>
-
-<p>Hours</p>
-
-</div>
-
-<div>
-
-<span id="minutes">00</span>
-
-<p>Minutes</p>
-
-</div>
-
-<div>
-
-<span id="seconds">00</span>
-
-<p>Seconds</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- GALLERY -->
+<!-- PHOTO GALLERY -->
 
 <section class="gallery">
 
@@ -154,6 +153,10 @@ From Subho ❤️
 
 <img src="photo5.jpg" class="slide">
 
+<img src="photo6.jpg" class="slide">
+
+<img src="photo7.jpg" class="slide">
+
 </div>
 
 </section>
@@ -170,7 +173,7 @@ From Subho ❤️
 
 <p>
 
-প্রিয় তিতলি,
+প্রিয় টিটলি,
 
 <br><br>
 
@@ -212,7 +215,7 @@ Happy Birthday Titli ❤️
 
 </section>
 
-<!-- SURPRISE -->
+<!-- FINAL SURPRISE -->
 
 <section class="surprise">
 
@@ -248,10 +251,6 @@ Stay Happy ❤️
 
 Stay Blessed ❤️
 
-<br><br>
-
-— Subho
-
 </p>
 
 <button id="closePopup">
@@ -264,10 +263,9 @@ Close
 
 </div>
 
-</div>
+</section>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
