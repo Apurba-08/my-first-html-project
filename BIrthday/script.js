@@ -1,319 +1,327 @@
-// ENTER BUTTON
-
-const enterBtn =
-document.getElementById("enterBtn");
-
-const introScreen =
-document.getElementById("introScreen");
-
-const mainSite =
-document.getElementById("mainSite");
-
-const music =
-document.getElementById("bgMusic");
-
-enterBtn.addEventListener("click",()=>{
-
-introScreen.style.display="none";
-
-mainSite.style.display="block";
-
-// Music Start
-
-music.currentTime = 109; // 1 min 49 sec
-
-music.play().catch(()=>{});
-
-// Typewriter Start
-
-if(index===0){
-typeWriter();
-}
-
-});
-
-
-
-// TYPEWRITER
-
-const message =
-
-"Some people leave our lives, but never leave our hearts. Happy Birthday Titli ❤️";
-
-let index = 0;
-
-function typeWriter(){
-
-if(index < message.length){
-
-document.getElementById("typewriter")
-.innerHTML += message.charAt(index);
-
-index++;
-
-setTimeout(typeWriter,50);
-
-}
-
-}
-
-
-
+// =======================
 // COUNTDOWN
+// =======================
 
-const birthdayDate =
-new Date("June 26, 2026 00:00:00").getTime();
+const targetDate = new Date("June 26, 2026 00:00:00").getTime();
 
-setInterval(()=>{
+const countdownScreen = document.getElementById("countdown-screen");
+const birthdayScreen = document.getElementById("birthday-screen");
+const mainWebsite = document.getElementById("mainWebsite");
 
-const now =
-new Date().getTime();
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
 
-const gap =
-birthdayDate - now;
+const finalCount = document.getElementById("finalCount");
+const enterBtn = document.getElementById("enterBtn");
 
-if(gap <= 0){
+let countdownFinished = false;
 
-document.getElementById("days").innerHTML="00";
-document.getElementById("hours").innerHTML="00";
-document.getElementById("minutes").innerHTML="00";
-document.getElementById("seconds").innerHTML="00";
+const timer = setInterval(() => {
 
-return;
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-}
+    if (distance <= 0 && !countdownFinished) {
 
-const days =
-Math.floor(gap/(1000*60*60*24));
+        countdownFinished = true;
+        clearInterval(timer);
 
-const hours =
-Math.floor(
-(gap%(1000*60*60*24))
-/
-(1000*60*60)
-);
+        countdownScreen.style.display = "none";
+        birthdayScreen.style.display = "flex";
 
-const minutes =
-Math.floor(
-(gap%(1000*60*60))
-/
-(1000*60)
-);
+        let count = 5;
 
-const seconds =
-Math.floor(
-(gap%(1000*60))
-/
-1000
-);
+        finalCount.innerText = count;
 
-document.getElementById("days")
-.innerHTML = days;
+        const miniTimer = setInterval(() => {
 
-document.getElementById("hours")
-.innerHTML = hours;
+            count--;
 
-document.getElementById("minutes")
-.innerHTML = minutes;
+            if (count > 0) {
+                finalCount.innerText = count;
+            } else {
 
-document.getElementById("seconds")
-.innerHTML = seconds;
+                clearInterval(miniTimer);
 
-},1000);
+                document.getElementById("mini-countdown").style.display = "none";
 
+                enterBtn.style.display = "inline-block";
+            }
 
+        }, 1000);
 
+        return;
+    }
 
-// SLIDESHOW
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60))
+        / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60))
+        / 1000);
 
-let slideIndex = 0;
+    daysEl.innerText = days;
+    hoursEl.innerText = hours;
+    minutesEl.innerText = minutes;
+    secondsEl.innerText = seconds;
 
-const slides =
-document.querySelectorAll(".slide");
-
-setInterval(()=>{
-
-slides[slideIndex]
-.classList.remove("active");
-
-slideIndex++;
-
-if(slideIndex >= slides.length){
-
-slideIndex = 0;
-
-}
-
-slides[slideIndex]
-.classList.add("active");
-
-},3000);
+}, 1000);
 
 
+// =======================
+// ENTER BUTTON
+// =======================
 
+enterBtn.addEventListener("click", () => {
 
-// POPUP
+    birthdayScreen.style.display = "none";
+    mainWebsite.style.display = "block";
 
-const popup =
-document.getElementById("popup");
+    const music = document.getElementById("bgMusic");
 
-document.getElementById("surpriseBtn")
-.addEventListener("click",()=>{
+    music.currentTime = 12;
 
-popup.style.display="flex";
-
-});
-
-document.getElementById("closePopup")
-.addEventListener("click",()=>{
-
-popup.style.display="none";
+    music.play().catch(() => {
+        console.log("Music autoplay blocked");
+    });
 
 });
 
 
+// =======================
+// TYPEWRITER
+// =======================
 
+const text = `
 
-// FLOATING HEARTS ❤️
+Happy Birthday Titli ❤️
 
-function createHeart(){
+Some people leave,
+but the memories never do.
 
-const heart =
-document.createElement("div");
+Today is your special day.
 
-heart.classList.add("heart");
+I hope life gives you
+every happiness you deserve.
 
-heart.innerHTML = "❤️";
+Stay happy.
+Stay blessed.
 
-heart.style.left =
-Math.random()*100 + "vw";
+Forever wishing the best for you.
 
-heart.style.animationDuration =
-(Math.random()*5+5)+"s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-
-heart.remove();
-
-},10000);
-
-}
-
-setInterval(createHeart,700);
-
-
-
-
-// FLYING BUTTERFLIES 🦋
-
-function createButterfly(){
-
-const butterfly =
-document.createElement("div");
-
-butterfly.classList.add("butterfly");
-
-butterfly.innerHTML = "🦋";
-
-butterfly.style.left =
-Math.random()*100 + "vw";
-
-butterfly.style.bottom = "-50px";
-
-butterfly.style.animationDuration =
-(Math.random()*8+8)+"s";
-
-document.body.appendChild(butterfly);
-
-setTimeout(()=>{
-
-butterfly.remove();
-
-},15000);
-
-}
-
-setInterval(createButterfly,1500);
-
-
-
-
-// FALLING PETALS 🌸
-
-function createPetal(){
-
-const petal =
-document.createElement("div");
-
-petal.classList.add("petal");
-
-petal.innerHTML = "🌸";
-
-petal.style.left =
-Math.random()*100 + "vw";
-
-petal.style.animationDuration =
-(Math.random()*6+6)+"s";
-
-document.body.appendChild(petal);
-
-setTimeout(()=>{
-
-petal.remove();
-
-},12000);
-
-}
-
-setInterval(createPetal,1000);
-
-
-
-
-
-// BIRTHDAY CHECK
-
-const today = new Date();
-
-const month = today.getMonth() + 1;
-
-const date = today.getDate();
-
-if(month === 6 && date === 26){
-
-document.querySelector(".countdown-section")
-.innerHTML = `
-
-<h1 style="color:#ff4d88;font-size:3rem;">
-🎂 Happy Birthday Titli 🎂
-</h1>
+- Subho
 
 `;
 
+let index = 0;
+
+function typeWriter() {
+
+    const target = document.getElementById("typewriter");
+
+    if (!target) return;
+
+    if (index < text.length) {
+
+        target.innerHTML += text.charAt(index);
+
+        index++;
+
+        setTimeout(typeWriter, 50);
+
+    }
+
 }
 
-for(let i=0;i<15;i++){
 
-setTimeout(()=>{
-createHeart();
-},i*300);
+// =======================
+// START TYPEWRITER
+// =======================
+
+enterBtn.addEventListener("click", () => {
+
+    setTimeout(() => {
+
+        document.getElementById("typewriter").innerHTML = "";
+
+        index = 0;
+
+        typeWriter();
+
+    }, 500);
+
+});
+
+
+// =======================
+// PHOTO SLIDER
+// =======================
+
+const slides = document.querySelectorAll(".slide");
+
+let currentSlide = 0;
+
+function showSlide(index) {
+
+    slides.forEach(slide => {
+
+        slide.classList.remove("active");
+
+    });
+
+    slides[index].classList.add("active");
 
 }
 
-for(let i=0;i<8;i++){
+setInterval(() => {
 
-setTimeout(()=>{
-createButterfly();
-},i*500);
+    if (slides.length === 0) return;
+
+    currentSlide++;
+
+    if (currentSlide >= slides.length) {
+
+        currentSlide = 0;
+
+    }
+
+    showSlide(currentSlide);
+
+}, 3500);
+
+
+// =======================
+// HEARTS
+// =======================
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (6 + Math.random() * 6) + "s";
+
+    document
+        .getElementById("heart-container")
+        .appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 12000);
 
 }
 
-for(let i=0;i<10;i++){
+setInterval(createHeart, 900);
 
-setTimeout(()=>{
-createPetal();
-},i*400);
+
+// =======================
+// FLOWERS
+// =======================
+
+function createFlower() {
+
+    const flower = document.createElement("div");
+
+    flower.classList.add("flower");
+
+    flower.innerHTML = "🌸";
+
+    flower.style.left = Math.random() * 100 + "vw";
+
+    flower.style.animationDuration =
+        (8 + Math.random() * 6) + "s";
+
+    document
+        .getElementById("flower-container")
+        .appendChild(flower);
+
+    setTimeout(() => {
+
+        flower.remove();
+
+    }, 15000);
+
+}
+
+setInterval(createFlower, 1400);
+
+
+// =======================
+// BUTTERFLIES
+// =======================
+
+function createButterfly() {
+
+    const butterfly = document.createElement("div");
+
+    butterfly.classList.add("butterfly");
+
+    butterfly.innerHTML = "🦋";
+
+    butterfly.style.left = Math.random() * 100 + "vw";
+
+    butterfly.style.animationDuration =
+        (10 + Math.random() * 6) + "s";
+
+    document
+        .getElementById("butterfly-container")
+        .appendChild(butterfly);
+
+    setTimeout(() => {
+
+        butterfly.remove();
+
+    }, 16000);
+
+}
+
+setInterval(createButterfly, 1800);
+
+
+// =======================
+// POPUP
+// =======================
+
+const surpriseBtn =
+    document.getElementById("surpriseBtn");
+
+const popup =
+    document.getElementById("popup");
+
+const closePopup =
+    document.getElementById("closePopup");
+
+surpriseBtn.addEventListener("click", () => {
+
+    popup.style.display = "flex";
+
+});
+
+closePopup.addEventListener("click", () => {
+
+    popup.style.display = "none";
+
+});
+
+
+// =======================
+// AUTO OPEN IF DATE PASSED
+// =======================
+
+if (new Date().getTime() > targetDate) {
+
+    countdownScreen.style.display = "none";
+    birthdayScreen.style.display = "flex";
 
 }
