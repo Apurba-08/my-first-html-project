@@ -12,7 +12,13 @@ overflow-x:hidden;
 color:#fff;
 }
 
-/* Molle Font For Headings */
+.subtitle,
+.birthday-card p,
+#typewriter{
+color:#000;
+}
+
+/* Imperiral Script Font For Headings */
 
 .glass-card h1,
 .glass-card h3,
