@@ -156,41 +156,78 @@ enterBtn.addEventListener("click", () => {
 });
 
 
-// =======================
-// PHOTO SLIDER
-// =======================
+// =====================
+// PREMIUM CAROUSEL
+// =====================
 
-const slides = document.querySelectorAll(".slide");
+const photos =
+document.querySelectorAll(".carousel-img");
 
-let currentSlide = 0;
+let current = 0;
 
-function showSlide(index) {
+function updateCarousel(){
 
-    slides.forEach(slide => {
+photos.forEach(photo=>{
 
-        slide.classList.remove("active");
+photo.className =
+"carousel-img hidden";
 
-    });
+});
 
-    slides[index].classList.add("active");
+photos[current].className =
+"carousel-img active";
+
+photos[
+(current - 1 + photos.length)
+% photos.length
+].className =
+"carousel-img left";
+
+photos[
+(current + 1)
+% photos.length
+].className =
+"carousel-img right";
+
+createPetalBurst();
 
 }
 
-setInterval(() => {
+for(let i=0;i<8;i++){
 
-    if (slides.length === 0) return;
+const petal =
+document.createElement("div");
 
-    currentSlide++;
+petal.classList.add("burst-petal");
 
-    if (currentSlide >= slides.length) {
+petal.innerHTML="🌸";
 
-        currentSlide = 0;
+petal.style.left="50%";
+petal.style.top="50%";
 
-    }
+document.body.appendChild(petal);
 
-    showSlide(currentSlide);
+setTimeout(()=>{
+petal.remove();
+},2000);
 
-}, 3500);
+}
+
+updateCarousel();
+
+setInterval(()=>{
+
+current++;
+
+if(current>=photos.length){
+
+current=0;
+
+}
+
+updateCarousel();
+
+},3500);
 
 
 // =======================
@@ -293,18 +330,28 @@ setInterval(createButterfly, 1800);
 // POPUP
 // =======================
 
-const surpriseBtn =
-    document.getElementById("surpriseBtn");
+// const surpriseBtn =
+//     document.getElementById("surpriseBtn");
 
-const popup =
-    document.getElementById("popup");
+// const popup =
+//     document.getElementById("popup");
 
-const closePopup =
-    document.getElementById("closePopup");
+// const closePopup =
+//     document.getElementById("closePopup");
 
-surpriseBtn.addEventListener("click", () => {
+// surpriseBtn.addEventListener("click", () => {
 
-    popup.style.display = "flex";
+//     popup.style.display = "flex";
+
+// });
+
+surpriseBtn.addEventListener("click",()=>{
+
+popup.style.display="flex";
+
+document
+.querySelector(".popup-content")
+.classList.add("pop-zoom");
 
 });
 
@@ -323,5 +370,77 @@ if (new Date().getTime() > targetDate) {
 
     countdownScreen.style.display = "none";
     birthdayScreen.style.display = "flex";
+
+}
+
+function createSparkle(){
+
+const sparkle =
+document.createElement("div");
+
+sparkle.classList.add("sparkle");
+
+sparkle.innerHTML = "✨";
+
+sparkle.style.left =
+Math.random()*100 + "vw";
+
+sparkle.style.animationDuration =
+(5 + Math.random()*5) + "s";
+
+document
+.getElementById("sparkle-container")
+.appendChild(sparkle);
+
+setTimeout(()=>{
+
+sparkle.remove();
+
+},10000);
+
+}
+
+setInterval(createSparkle,1200);
+
+// =========================
+// PETAL BURST EFFECT
+// =========================
+
+function createPetalBurst(){
+
+for(let i=0;i<10;i++){
+
+const petal =
+document.createElement("div");
+
+petal.innerHTML = "🌸";
+
+petal.classList.add("burst-petal");
+
+const x =
+(Math.random()*400)-200;
+
+const y =
+(Math.random()*400)-200;
+
+petal.style.setProperty(
+"--x",
+`${x}px`
+);
+
+petal.style.setProperty(
+"--y",
+`${y}px`
+);
+
+document.body.appendChild(petal);
+
+setTimeout(()=>{
+
+petal.remove();
+
+},2000);
+
+}
 
 }
